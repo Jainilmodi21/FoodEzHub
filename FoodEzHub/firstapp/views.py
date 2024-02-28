@@ -53,11 +53,76 @@ def menu(request):
     email=request.session['email']
     name=request.session['name']
     restaurant=Restaurant.objects.get(email=email)
-    print(restaurant)
     food_item=Food_item.objects.filter(restaurant=restaurant)
-    print(food_item)
     data={
         'food_item':food_item,
         'restaurant':restaurant,
     }
-    return render(request,'my_menu.html',data)
+    return render(request,"my_menu.html",data)
+
+def edit(request,item_id):
+    email=request.session['email']
+    name=request.session['name']
+    request.session['item_id']=item_id
+    food_item = Food_item.objects.get(pk=item_id)
+    print(food_item.name)
+    restaurant=Restaurant.objects.get(email=email)
+    
+    data={
+        'food_item':food_item,
+        'restaurant':restaurant,
+    }
+    return render(request,"edit.html",data)
+
+def edit_food(request):
+    item_id=request.session['item_id']
+    food_item = Food_item.objects.get(pk=item_id)
+    # restaurant=Restaurant.objects.get(restaurant=food_item.restaurant)
+    request.session['email']=food_item.restaurant.email
+    request.session['name']=food_item.restaurant.name
+    if request.method=="POST":
+        name=request.POST.get('name')
+        price=request.POST.get('price')
+        category=request.POST.get('category')
+        description=request.POST.get('description')
+        food_item.name=name
+        food_item.price=price
+        food_item.category=category
+        food_item.description=description
+        food_item.save()
+        return redirect('menu')
+    else:
+        return redirect('menu')
+    
+
+def add_item(request):
+    email=request.session['email']
+    name=request.session['name']
+    restaurant=Restaurant.objects.get(email=email)
+    data={
+        'restaurat':restaurant,
+    }
+    return render(request,'add_item.html',data)
+
+def add_menu(request):
+    email=request.session['email']
+    name=request.session['name']
+    restaurant=Restaurant.objects.get(email=email)
+    item=Food_item()
+    if request.method=="POST":
+        name=request.POST.get('name')
+        price=request.POST.get('price')
+        category=request.POST.get('category')
+        description=request.POST.get('description')
+        item.name=name
+        item.price=price
+        item.restaurant=restaurant
+        item.category=category
+        item.description=description
+        item.save()
+        return redirect('menu')
+    else:
+         return redirect('menu')
+
+    
+  

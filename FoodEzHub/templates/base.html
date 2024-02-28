@@ -1,39 +1,15 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Food Ordering App</title>
+  <title>{% block title %} {% endblock title %}</title>
   <!-- Bootstrap CSS -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom CSS -->
-  <style>
-    /* Custom CSS for navigation bar */
-    .navbar-custom {
-      background-color: #FF8C00; /* Orange background */
-    }
-
-    .navbar-custom .navbar-brand,
-    .navbar-custom .navbar-text {
-      color: #FFFFFF; /* White text */
-    }
-
-    .navbar-custom .navbar-nav .nav-link {
-      color: #FFFFFF; /* White text */
-    }
-
-    .navbar-custom .navbar-nav .nav-link:hover {
-      color: #FFFFFF; /* White text on hover */
-    }
-
-    .navbar-custom .navbar-toggler {
-      border-color: #FFFFFF; /* White border for toggler */
-    }
-
-    .navbar-custom .navbar-toggler-icon {
-      background-color: #FFFFFF; /* White color for toggler icon */
-    }
-  </style>
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+      {% block head %} {% endblock head %}
 </head>
 <body>
   
@@ -64,10 +40,6 @@
       </div>
     </div>
   </nav>
-
-  <!-- Bootstrap JS (optional) -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  {% block body %} {% endblock body %}
 </body>
 </html>
