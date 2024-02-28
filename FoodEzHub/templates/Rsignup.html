@@ -23,7 +23,7 @@
 <body>
   <div class="container">
     <h2 class="text-center mb-4">Restaurant Signup</h2>
-    <form method="post" action="{% url 'sd'%}" id="signupForm">
+    <form method="post" action="registerRestaurant" id="signupForm">
         {% csrf_token %}
       <div class="form-group">
         <label for="name">Name</label>

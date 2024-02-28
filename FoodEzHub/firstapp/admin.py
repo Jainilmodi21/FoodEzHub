@@ -1,15 +1,15 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Restaurant,Customer,Order,Product,Cart,Payment,Feedback
+from .models import Restaurant,Customer,Order,Food_item,Cart,Payment,Feedback
 class restaurant_admin(admin.ModelAdmin):
-    list_display=('Name','Email','Address','mobile_no','open_time','close_time')
+    list_display=('name','email','address','mobile_no','open_time','close_time')
 
 class customer_admin(admin.ModelAdmin):
-    list_display=('Name','Email','Address','mobile_no')
+    list_display=('name','email','address','mobile_no')
 
-class product_admin(admin.ModelAdmin):
-    list_display=('name','restaurant_id','price','category','description')
+class food_item_admin(admin.ModelAdmin):
+    list_display=('name','restaurant','price','category','description')
 
 class cart_admin(admin.ModelAdmin):
     list_display=('product_id','quantity')
@@ -26,7 +26,7 @@ class feedback_admin(admin.ModelAdmin):
 
 admin.site.register(Restaurant,restaurant_admin)
 admin.site.register(Customer,customer_admin)
-admin.site.register(Product,product_admin)
+admin.site.register(Food_item,food_item_admin)
 admin.site.register(Cart,cart_admin)
 admin.site.register(Payment,payment_admin)
 admin.site.register(Order,order_admin)
