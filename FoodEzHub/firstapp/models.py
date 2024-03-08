@@ -9,6 +9,7 @@ class Restaurant(models.Model):
     open_time=models.TimeField()
     close_time=models.TimeField()
     password=models.CharField(max_length=30,default='')
+    image = models.ImageField(upload_to='images/',default='')
 
 class Customer(models.Model):
     name=models.CharField(max_length=30)
@@ -24,6 +25,7 @@ class Food_item(models.Model):
     price=models.IntegerField()
     category=models.CharField(max_length=30)
     description=models.CharField(max_length=60)
+    image = models.ImageField(upload_to='images/',default='')
     
 class Cart(models.Model):
      product=models.ForeignKey(Food_item,null=False,on_delete=models.CASCADE)

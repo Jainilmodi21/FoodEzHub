@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FoodEzHub - Restaurant Signup</title>
+  <title>FoodEzHub - Customer Signup</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <!-- Custom CSS -->
@@ -22,14 +22,9 @@
 </head>
 <body>
   <div class="container">
-    <h2 class="text-center mb-4">Restaurant Signup</h2>
-    <form method="post" action="registerRestaurant" id="signupForm" enctype="multipart/form-data">
+    <h2 class="text-center mb-4">Customer Signup</h2>
+    <form method="post" action="registerCustomer" id="signupForm">
         {% csrf_token %}
-        {%if messages%}
-        {%for message in messages%}
-        <div class="alert alert-secondary" role="alert" style="color:red">{{message}}</div>
-        {%endfor%}
-    {%endif%}
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" name="name" required>
@@ -46,18 +41,6 @@
         <label for="mobile">Mobile No</label>
         <input type="tel" class="form-control" id="mobile" name="mobile" pattern="[0-9]{10}" required>
       </div>
-      <div class="form-group">
-        <label for="open-time">Open time</label>
-        <input type="time" class="form-control" id="open" name="open" required>
-      </div>
-      <div class="form-group">
-        <label for="close-time">Close time</label>
-        <input type="time" class="form-control" id="close" name="close" required>
-      </div>
-      <div class="form-group">
-        <label for="image">Select Picture:</label><br>
-        <input type="file" id="image" name="image"><br><br>
-    </div>
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" class="form-control" id="password" name="password" required>

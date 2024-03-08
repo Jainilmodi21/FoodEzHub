@@ -23,10 +23,11 @@
 
     {% for item in food_item %}
     <div class="menu-item">
+        <img src="{{ item.image.url }}" alt="Image" style="width: 100px;height: 100px;">
         <h4>{{ item.name }}</h4>
         <p class="description">{{ item.description }}</p>
         <p class="price">{{ item.price }}</p>
-        <a class="btn btn-link edit-btn" href="{% url 'edit' item.id %}""><i class="fas fa-edit" ></i></a> <!-- Font Awesome edit icon -->
+        <a class="btn btn-link edit-btn" href="{% url 'edit' item.id %}"><i class="fas fa-edit" ></i></a> <!-- Font Awesome edit icon -->
     </div>
     {% endfor %}
 </div>
