@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Restaurant(models.Model):
     name=models.CharField(max_length=30)
     email=models.EmailField(max_length=30)
@@ -28,8 +27,9 @@ class Food_item(models.Model):
     image = models.ImageField(upload_to='images/',default='')
     
 class Cart(models.Model):
-     product=models.ForeignKey(Food_item,null=False,on_delete=models.CASCADE)
-     quantity=models.IntegerField()
+     customer=models.ForeignKey(Customer,null=False,on_delete=models.CASCADE,default='')
+     total_item=models.IntegerField(default=0) 
+     total_amount=models.IntegerField()
 
 class Payment(models.Model):
     customer=models.ForeignKey(Customer,null=False,on_delete=models.CASCADE)
@@ -39,12 +39,13 @@ class Payment(models.Model):
     debit_card_no=models.IntegerField()
 
 
-class Order(models.Model):
-    customer=models.ForeignKey(Customer,null=False,on_delete=models.CASCADE)
-    cart_id=models.ForeignKey(Cart,null=False,on_delete=models.CASCADE)
-
+class Cart_item(models.Model):
+    food_item=models.ForeignKey(Food_item,null=False,on_delete=models.CASCADE)
+    quantity=models.IntegerField()
+    amount=models.IntegerField(default=0)
+    cart=models.ForeignKey(Cart,null=False,on_delete=models.CASCADE)
 
 class Feedback(models.Model):
     rating=models.IntegerField()
     customer=models.ForeignKey(Customer,null=False,on_delete=models.CASCADE)
-    product=models.ForeignKey(Food_item,null=False,on_delete=models.CASCADE)
+    food_item=models.ForeignKey(Food_item,null=False,on_delete=models.CASCADE)

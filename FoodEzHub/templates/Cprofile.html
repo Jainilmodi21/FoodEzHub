@@ -13,24 +13,19 @@
 {% block body %}
     <div class="container" style="background-color: rgb(243, 243, 243); margin-top: 70px; border-radius:10px ;">
     <div class="menu-item" style="margin-top: 70px;">
-        <h4>{{ customer.name }}</h4>
-        <a class="btn btn-link edit-btn" href=#><i class="fas fa-edit" ></i></a> <!-- Font Awesome edit icon -->
-    </div>
-    <div class="menu-item">
-        <h4>{{ customer.email }}</h4>
-        <a class="btn btn-link edit-btn" href=#><i class="fas fa-edit" ></i></a> <!-- Font Awesome edit icon -->
-    </div>
-    <div class="menu-item">
-        <h4>{{ customer.address }}</h4>
-        <a class="btn btn-link edit-btn" href=#><i class="fas fa-edit" ></i></a> <!-- Font Awesome edit icon -->
-    </div>
-    <div class="menu-item">
-        <h4>{{ customer.mobile_no }}</h4>
-        <a class="btn btn-link edit-btn" href=#><i class="fas fa-edit" ></i></a> <!-- Font Awesome edit icon -->
-    </div>
-    <div class="menu-item">
-        <h4> Password</h4>
-        <a class="btn btn-link edit-btn" href=#><i class="fas fa-edit" ></i></a> <!-- Font Awesome edit icon -->
+        <h4>Name: {{ customer.name }}</h4>
+        <a class="btn btn-link edit-btn" href="edit_profile"><i class="fas fa-edit" ></i></a> <!-- Font Awesome edit icon -->
+   
+   
+        <h4>Email: {{ customer.email }}</h4>
+       
+    
+        <h4>Address: {{ customer.address }}</h4>
+       
+   
+
+        <h4>Mobile No: {{ customer.mobile_no }}</h4>
+        
     </div>
 </div>
 {%endblock body%}

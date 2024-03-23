@@ -10,6 +10,7 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{% static 'main.css' %}">
       {% block head %}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
       <link rel="stylesheet" href="{% static 'menu_style.css' %}">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"> {% endblock head %}
@@ -46,13 +47,36 @@
       </div>
     </div>
   </nav>
+ 
+<div class="container">
+ 
+  <div class="input-group mb-3" >
+    <form method="post" action="search" style="display: flex;padding-left: 50px; margin-left: 50px;">
+      {%csrf_token%}
+      <input type="text" class="form-control" placeholder="Search by restaurant name" aria-label="Search" aria-describedby="button-addon2" id="search-input" name="search" style="width: 800px;">
+      <br/>
+      <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="submit" id="search-button" style="background-color: rgb(68, 235, 68); color:black">Search</button>
+      </div>
+      </form>
+  </div>
+  <!-- Display search results here -->
+  <div id="search-results">
+    {% for restro in search %}
+    <a class="btn btn-link edit-btn" href="{% url 'restro_menu' restro.id%}"><div class="menu-item" style="margin-left: 30px; padding-left: 25px;width: 290px; height: 300px;" >
+      <img src="{{restro.image.url }}" alt="Image" style="width: 200px;height: 200px;margin-right: 30px;" >
+      <h4 style="margin-top: 20px;" >{{restro.name}}</h4>
+    </a>
+    {%endfor%}
+  </div>
+</div>
   {% block body %} 
-  <div class="container" style="display: flex;">
+  <div class="container" style="display:inline-flex;flex-wrap: wrap; margin-left: 100px; ">
     {% for restro in restaurant %}
-    <div class="menu-item" style="margin-left: 30px; padding-left: 25px;width: 300px;" >
-      <img src="{{restro.image.url }}" alt="Image" style="width: 200px;height: 200px;">
-        <h4 style="margin-left: 30px;">{{restro.name}}</h4>
-       
+    <a class="btn btn-link edit-btn" href="{% url 'restro_menu' restro.id%}"><div class="menu-item" style="margin-left: 50px; padding-left: 25px;width: 250px ; height: 250px;" >
+      <img src="{{restro.image.url }}" alt="Image" style="width: 180px;height: 180px;" >
+      <h4 style="margin-top: 20px;" >{{restro.name}}</h4>
+    </a>
        
     </div>
     {% endfor %}

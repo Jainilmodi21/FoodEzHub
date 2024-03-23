@@ -1,0 +1,27 @@
+body {
+    background-image: url('2.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 50px 0;
+    text-align: center;
+}
+
+.btn-custom {
+    background-color: #ff5722;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.btn-custom:hover {
+    background-color: #e64a19;
+}

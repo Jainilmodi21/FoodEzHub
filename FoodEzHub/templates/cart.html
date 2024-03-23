@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Cart</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    h2 {
+      color: #333;
+    }
+    .table {
+      border-collapse: separate;
+      border-spacing: 0 15px;
+    }
+    .table th, .table td {
+      border: none;
+      padding: 15px;
+      vertical-align: middle;
+    }
+    .table th {
+      background-color: #f8f9fa;
+      color: #555;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    .table tbody tr {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .table tbody tr:last-child {
+      box-shadow: none;
+    }
+    .table tbody tr:hover {
+      background-color: rgba(0, 0, 0, 0.03);
+    }
+    .table tfoot td {
+      font-weight: bold;
+    }
+    .btn-checkout {
+      background-color: #007bff;
+      border: none;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .btn-checkout:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="mb-4">Your Cart</h2>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Example row for each item -->
+          {%for i in cart_item%}
+          <tr>
+            <td>{{i.food_item.name}}</td>
+            <td>{{i.quantity}}</td>
+            <td>{{i.food_item.price}}</td>
+            <td>{{i.amount}}</td> 
+          </tr>
+          {%endfor%}
+          <!-- You can dynamically generate rows using server-side scripting -->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3"><strong>Grand Total:</strong></td>
+            <td><strong>{{cart.total_amount}}</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div style="display: flex; margin-left: 300px;">
+    <div class="text-center">
+        <a href="{% url 'restro_menu' restaurant.id %}" class="btn btn-checkout">Back</a>
+    </div>
+    
+    <div class="text-center">
+        <a href="#" class="btn btn-checkout" style="padding-left: 40px; margin-left: 480px;">Place order</a>
+    </div>
+</div>
+  </div>
+</body>
+</html>

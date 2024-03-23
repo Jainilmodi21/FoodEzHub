@@ -17,7 +17,7 @@
         <h2>{{ restaurant.name }}</h2>
         <p>{{ restaurant.address }}</p>
         <p>{{ restaurant.mobile_no }}</p>
-        <!-- Add a new item option -->
+        
         <a href="add_item" class="btn btn-primary">Add New Item</a>
     </div>
 
@@ -27,6 +27,7 @@
         <h4>{{ item.name }}</h4>
         <p class="description">{{ item.description }}</p>
         <p class="price">{{ item.price }}</p>
+        <a class="btn btn-link edit-btn" href="{% url 'delete' item.id %}" style="margin-right: 50px;"><i class="fas fa-trash" ></i></a>
         <a class="btn btn-link edit-btn" href="{% url 'edit' item.id %}"><i class="fas fa-edit" ></i></a> <!-- Font Awesome edit icon -->
     </div>
     {% endfor %}
