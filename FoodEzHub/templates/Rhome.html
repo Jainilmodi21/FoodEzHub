@@ -1,11 +1,122 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %} {% endblock title %}</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+  <style>
+    /* Custom CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .order-item {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+      {% block head %} {% endblock head %}
 </head>
 <body>
-    hello
+  
+  <nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+      <a class="navbar-brand" href="#">FoodEzHub</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="restro_home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="menu"> My Menu</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="rabout">About us</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="rprofile">{{restaurant.name}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="login">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  {% block body %}
+  
+
+
+<div class="container">
+
+ <div class="header">
+    <h1>{{restaurant.name}}</h1>
+ </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Today's Orders</h3>
+      <p>Number of Completed Orders: {{total_order}}</p>
+    </div>
+    <div class="col-md-4">
+      <h3>Today's Revenue</h3>
+      <p>Total Revenue: {{total_revenue}}</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Rating: {{restaurant.rating}}</h3>
+        <p></p>
+      </div>
+  </div>
+
+  <!-- Current orders panel -->
+  {% for o in order1 %}
+  <div class="order-item">
+    <h4>{{ o.id }}</h4>
+    <p>Customer: {{ o.cart.customer.name }}</p>
+    <p>Items:</p>
+    <ul>
+      {% for cart_item in o.cart.cart_item_set.all %}
+        <li>{{ cart_item.food_item.name }} - Quantity: {{ cart_item.quantity }}</li>
+      {% endfor %}
+    </ul>
+    <p>Total amount:{{o.cart.total_amount}}</p>
+    <p>Status: Pending</p>
+    <a href="{%url 'current_order' o.id%}"><button class="btn btn-primary accept-btn" >Accept Order</button></a>
+    <a href="{%url 'reject_order' o.id%}"><button class="btn btn-danger reject-btn" >Reject Order</button></a>
+  </div>
+{% endfor %}
+
+  <h3 class="mt-5">Current Orders</h3>
+  {% for o in order2 %}
+  <div class="order-item">
+    <h4>{{ o.id }}</h4>
+    <p>Customer: {{ o.cart.customer.name }}</p>
+    <p>Items:</p>
+    <ul>
+      {% for cart_item in o.cart.cart_item_set.all %}
+        <li>{{ cart_item.food_item.name }} - Quantity: {{ cart_item.quantity }}</li>
+      {% endfor %}
+    </ul>
+    <p>Total amount:{{o.cart.total_amount}}</p>
+    <p>Status: In Process</p>
+    <a href="{%url 'prepare_order' o.id%}"><button class="btn btn-primary accept-btn" >Prepared</button></a>
+  </div>
+{% endfor %}
+</div>
+  {% endblock body %}
 </body>
 </html>

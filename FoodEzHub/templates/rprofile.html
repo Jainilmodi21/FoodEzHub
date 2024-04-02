@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}profile{% endblock title %}
+
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'menu_style.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+{% endblock head %}
+
+{% block body %}
+    <div class="container" style="background-color: rgb(243, 243, 243); margin-top: 70px; border-radius:10px ;">
+    <div class="menu-item" style="margin-top: 70px;">
+        <h4>Name: {{ restaurant.name }}</h4>
+        <a class="btn btn-link edit-btn" href="{%url 'redit_profile'%}"><i class="fas fa-edit" ></i></a> <!-- Font Awesome edit icon -->
+   
+   
+        <h4>Email: {{ restaurant.email }}</h4>
+       
+    
+        <h4>Address: {{ restaurant.address }}</h4>
+       
+   
+
+        <h4>Mobile No: {{ restaurant.mobile_no }}</h4>
+
+        <h4>Open time: {{ restaurant.open_time }}</h4>
+        <h4>Close time: {{ restaurant.close_time }}</h4>
+        
+    </div>
+</div>
+{%endblock body%}

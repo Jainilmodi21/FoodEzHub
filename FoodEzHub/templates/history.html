@@ -1,0 +1,73 @@
+{% extends 'Cbase.html' %}
+
+{% block title %} History {% endblock title %}
+
+{% load static %}
+
+{% block head %}
+  <title>Customer History & Feedback</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .order-item {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    /* .feedback-form {
+      display: none;
+    } */
+  </style>
+{% endblock head %}
+
+{% block body %}
+
+<div class="container">
+  <h1 class="text-center mb-4">Order History & Feedback</h1>
+
+  <!-- Sample order history -->
+  {% for o in order %}
+  <div class="order-item">
+    <h4>{{ o.id }}</h4>
+    <h4>{{o.cart.restaurant.name}}</h4>
+    <p>Date: {{ o.order_date }}</p>
+    <ul>
+      {% for cart_item in o.cart.cart_item_set.all %}
+      <li>{{ cart_item.food_item.name }} - Quantity: {{ cart_item.quantity }}</li>
+      {% endfor %}
+    </ul>
+    <p>Total amount: {{ o.cart.total_amount }}</p>
+    <p>Status: {{o.status}}</p>
+    {% if o.status == "delivered" %}
+    <div class="feedback-form mt-3">
+      <form action="{% url 'rating' o.id%}" method="post">
+        {%csrf_token%}
+        <div class="form-group">
+          <label for="rating">Your Rating:</label>
+          <select class="form-control" id="rating" name="rating">
+            <option value="5">Excellent</option>
+            <option value="4">Very Good</option>
+            <option value="3">Good</option>
+            <option value="2">Fair</option>
+            <option value="1">Poor</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success">Submit Feedback</button>
+      </form>
+    </div>
+    {%endif%}
+  </div>
+  {% endfor %}
+</div>
+
+{%endblock body%}

@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./FoodEzHub/razorpay-python-master",
+        "./FoodEzHub/razorpay-python-master"
+    ]
+}

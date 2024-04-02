@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'Cbase.html' %}
 
 {% block title %} Edit item {% endblock title %}
 
@@ -13,8 +13,8 @@
 {% block body %}
 <div class="container" style="background-color: aliceblue; margin-top: 80px; border-radius: 5px;">
    
-    <h2>Edit Food Item</h2>
-    <form method="post" action="#">
+    <h2>Edit Profile </h2>
+    <form method="post" action="update_profile">
         {% csrf_token %}
         <div class="form-group">
             <label for="name">Name:</label>
@@ -32,10 +32,7 @@
             <label for="">Mobile No:</label>
             <input type="text" class="form-control" id="mobile_no" name="mobile_no" value="{{ customer.mobile_no}}">
         </div>
-        <!-- <div class="form-group">
-            <label for="image">Select Picture:</label><br>
-            <input type="file" id="image" name="image" ><br><br>
-        </div> -->
+       
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>

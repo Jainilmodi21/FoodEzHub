@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{%load static%}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,6 +6,7 @@
   <title>Login Form</title>
  
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'log.css' %}">
   <style>
     .login-container {
       max-width: 400px;
@@ -14,10 +15,10 @@
     }
   </style>
 </head>
-<body>
+<body >
   
   <div class="container login-container">
-    <h2 class="text-center mb-4">Login</h2>
+    <h2 class="text-center mb-4" style="color:rgb(255, 126, 126);font-weight: 600;">Login</h2>
     <form action="login_all" method="post">
         {%csrf_token%}
         {%if messages%}
@@ -26,14 +27,14 @@
             {%endfor%}
         {%endif%}
       <div class="form-group">
-        <label for="inputEmail">Email address</label>
+        <label for="inputEmail" style="color: rgb(26, 23, 23); font-weight: 400;">Email address</label>
         <input type="email" class="form-control" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
       </div>
       <div class="form-group">
-        <label for="inputPassword">Password</label>
+        <label for="inputPassword" style="color: black; font-weight: 400;">Password</label>
         <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
       </div>
-      <button type="submit" class="btn btn-primary btn-block">Login</button>
+      <button type="submit" class="btn btn-primary btn-block" style="font-weight: 400;">Login</button>
     </form>
   </div>
 

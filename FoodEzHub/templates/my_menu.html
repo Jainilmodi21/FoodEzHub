@@ -18,7 +18,7 @@
         <p>{{ restaurant.address }}</p>
         <p>{{ restaurant.mobile_no }}</p>
         
-        <a href="add_item" class="btn btn-primary">Add New Item</a>
+        <a href="{%url 'add_item'%}" class="btn btn-primary">Add New Item</a>
     </div>
 
     {% for item in food_item %}

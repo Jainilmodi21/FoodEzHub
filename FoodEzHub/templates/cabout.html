@@ -1,0 +1,61 @@
+{% extends 'Cbase.html' %}
+
+{% block title %} About {% endblock title %}
+
+{% load static %}
+
+{% block head %}
+  <title>About Us - FoodEzHub</title>
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+  }
+  .container {
+    margin: auto;
+    padding: 20px;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .section {
+    margin-bottom: 50px;
+  }
+  .section-heading {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .section-content {
+    color: #666;
+    font-size: 18px;
+  }
+</style>
+  {% endblock head %}
+
+  {% block body %}
+
+
+<div class="container">
+  <div class="header">
+    <h1>About Us - FoodEzHub</h1>
+    <p>Welcome to FoodEzHub, your ultimate destination for ordering food online!</p>
+  </div>
+
+  <div class="section">
+    <h2 class="section-heading">Our Mission</h2>
+    <p class="section-content">At FoodEzHub, our mission is to make food ordering easy, convenient, and enjoyable for everyone. We strive to connect hungry customers with their favorite restaurants, ensuring quick and delicious meals delivered straight to their doorsteps.</p>
+  </div>
+
+ 
+
+  <div class="section">
+    <h2 class="section-heading">Contact Us</h2>
+    <p class="section-content">Have any questions or feedback? Feel free to reach out to us at support@foodezhub.com or give us a call at  9105647834. We're always here to help!</p>
+  </div>
+</div>
+
+{%endblock body%}

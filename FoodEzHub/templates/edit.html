@@ -14,7 +14,7 @@
 <div class="container" style="background-color: aliceblue; margin-top: 80px; border-radius: 5px;">
    
     <h2>Edit Food Item</h2>
-    <form method="post" action="{%url 'edit_food' %}">
+    <form method="post" action="{%url 'edit_food' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
             <label for="name">Name:</label>
@@ -30,11 +30,11 @@
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <textarea class="form-control" id="description" name="description">{{ food_item.description }}</textarea>
+            <textarea class="form-control" id="description" name="description" value="{{food_item.description}}"> {{ food_item.description }}</textarea>
         </div>
         <div class="form-group">
             <label for="image">Select Picture:</label><br>
-            <input type="file" id="image" name="image" ><br><br>
+            <input type="file" id="image" name="image1"  ><br><br></input>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
